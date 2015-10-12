@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # loading image
-#img0 = cv2.imread('SanFrancisco.jpg',)
+#img0 = cv2.imread('SanFrancisco.png',)
 img0 = cv2.imread('dunk.jpg',)
 
 # converting to gray scale
