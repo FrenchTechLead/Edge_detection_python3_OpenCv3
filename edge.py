@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 # loading image
 img0 = cv2.imread('dunk.jpg',)
-
+# converting to gray scale
 # converting to gray scale
 gray = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
 
