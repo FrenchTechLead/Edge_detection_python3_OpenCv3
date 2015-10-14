@@ -3,10 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # loading image
-img0 = cv2.imread('dunk.jpg',)
-# converting to gray scale
-# converting to gray scale
-gray = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
+gray = cv2.imread('dunk.png',cv2.IMREAD_GRAYSCALE)
 
 # remove noise
 img = cv2.GaussianBlur(gray,(3,3),0)
@@ -19,6 +16,7 @@ sobely = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=5)  # y
 plt.subplot(2,2,1),plt.imshow(img,cmap = 'gray')
 plt.title('Original'), plt.xticks([]), plt.yticks([])
 plt.subplot(2,2,2),plt.imshow(laplacian,cmap = 'gray')
+
 plt.title('Laplacian'), plt.xticks([]), plt.yticks([])
 plt.subplot(2,2,3),plt.imshow(sobelx,cmap = 'gray')
 plt.title('Sobel X'), plt.xticks([]), plt.yticks([])
