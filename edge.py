@@ -1,27 +1,54 @@
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
+import math
+scale = 1
+delta = 0
+ddepth = cv2.CV_16S
 
-# loading image
-gray = cv2.imread('dunk.png',cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('dunk.png')
+height, width = img.shape[:2]
+maxMesure = max(height, width)
+coefThreshold = 0.5
 
-# remove noise
-img = cv2.GaussianBlur(gray,(3,3),0)
+img = cv2.GaussianBlur(img, (3, 3), 0) #noise suppression
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # conversion to grayScale
 
-# convolute with proper kernels
-laplacian = cv2.Laplacian(img,cv2.CV_64F)
-sobelx = cv2.Sobel(img,cv2.CV_64F,1,0,ksize=5)  # x
-sobely = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=5)  # y
-
-plt.subplot(2,2,1),plt.imshow(img,cmap = 'gray')
-plt.title('Original'), plt.xticks([]), plt.yticks([])
-plt.subplot(2,2,2),plt.imshow(laplacian,cmap = 'gray')
-
-plt.title('Laplacian'), plt.xticks([]), plt.yticks([])
-plt.subplot(2,2,3),plt.imshow(sobelx,cmap = 'gray')
-plt.title('Sobel X'), plt.xticks([]), plt.yticks([])
-plt.subplot(2,2,4),plt.imshow(sobely,cmap = 'gray')
-plt.title('Sobel Y'), plt.xticks([]), plt.yticks([])
+# Gradient-X
+grad_x = cv2.Sobel(gray, ddepth, 1, 0, ksize=3, borderType=cv2.BORDER_DEFAULT)
 
 
-plt.show()
+# Gradient-Y
+grad_y = cv2.Sobel(gray, ddepth, 0, 1, ksize=3, borderType=cv2.BORDER_DEFAULT)
+
+
+sobxImage = cv2.convertScaleAbs(grad_x)   # conversion to uint8
+sobyImage = cv2.convertScaleAbs(grad_y)
+
+
+mergedImage = cv2.addWeighted(sobxImage, 2, sobyImage, 2, 0) # fusion of sobx and soby
+
+
+(thresh, im_bw) = cv2.threshold(mergedImage, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)# to black and white
+cv2.imshow('im_bw',im_bw)
+
+lines = cv2.HoughLines(im_bw, 1, np.pi/180,math.floor(maxMesure*coefThreshold))
+
+for i in range(len(lines)):
+    print(lines[i])
+    for rho, theta in lines[i-1]:
+        a = np.cos(theta)
+        b = np.sin(theta)
+        x0 = a*rho
+        y0 = b*rho
+        x1 = int(x0 + 1599*(-b))
+        y1 = int(y0 + 1599*(a))
+        x2 = int(x0 - 1599*(-b))
+        y2 = int(y0 - 1599*(a))
+
+        cv2.line(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
+
+cv2.imshow('img', img)
+
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
