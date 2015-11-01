@@ -68,7 +68,7 @@ for i in range(len(lines)):
         x2 = int(x0 - 1599*(-b))
         y2 = int(y0 - 1599*(a))
 
-        cv2.line(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
+        cv2.line(img, (x1, y1), (x2, y2), (0, 255, 255), 1)
 
 cv2.imshow('img', img)
 
