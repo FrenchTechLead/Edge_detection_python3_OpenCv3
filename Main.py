@@ -7,6 +7,10 @@ from Edge.ImageProp import *
 
 def nothing(x):
     pass
+print("Welcome to Python WhiteBoard Recognition Program\n\n"
+      "Since images dont have  the same proprieties, the parameteres of the whiteBoard detection program are not  the same for two images \n"
+      "That's why you need to use the TrackBars to find the perfect parameteres for your inputImage \n\n"
+      "press C when you perfectly detect edges")
 
 inputImage = cv2.imread('dunk.jpg')
 imgProp = ImageProp(inputImage) # just getting image resolution and diagonal
@@ -20,8 +24,8 @@ a = imgProp.diagonal
 cv2.namedWindow('parametres')
 
 cv2.createTrackbar('Threshold', 'parametres', a, math.floor(a/2), nothing)
-cv2.createTrackbar('MinLineLenth', 'parametres', a, math.floor(a/2), nothing)
-cv2.createTrackbar('MaxLineGape', 'parametres', a, math.floor(a/2), nothing)
+cv2.createTrackbar('MinLineLenth', 'parametres', 0, math.floor(a/2), nothing)
+cv2.createTrackbar('MaxLineGape', 'parametres', 0, math.floor(a/2), nothing)
 
 while(1):
 
@@ -38,7 +42,13 @@ while(1):
     linedImageObject = Hough(imgSobel,inputImage, 0.25)# third parameter refers to Threashold Coef
     returnedArray = linedImageObject.drawLinesP( minLineLenth, maxLineGape,inputImage,threshold)
     inputImage = returnedArray[0]
-
     cv2.imshow('parametres', inputImage)
+    lines = returnedArray[1]
+
+    if k == ord('c'):
+        print("lines = ")
+        print(lines)
+
+
 
 cv2.waitKey(0)
