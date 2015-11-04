@@ -4,6 +4,8 @@ import numpy as np
 
 ddepth = cv2.CV_16S
 
+
+
 def mySobel( inputImage, ksize):
     img = cv2.GaussianBlur(inputImage, (3, 3), 0) #noise suppression
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # conversion to grayScale

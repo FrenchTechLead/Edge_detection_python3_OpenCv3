@@ -40,13 +40,14 @@ class Hough:
                 cv2.line(self.inputImageColor, (x1, y1), (x2, y2), (0, 0, 255), 1)
         return self.inputImageColor
 
+
     def drawLinesP(self, minLineLenght, maxLineGap, coloredImage, thresholdOptional = threshold):
         lines = cv2.HoughLinesP(self.inputImageBW,1,np.pi/180,thresholdOptional,minLineLenght, maxLineGap)
         for i in range(len(lines)):
             for x1,y1,x2,y2 in lines[i-1]:
                 cv2.line(coloredImage, (x1, y1), (x2, y2),(0,255,0),1)
-                #print("x1 = "+str(x1)+" y1 = "+str(y1))
-                #print("x2 = "+str(x2)+" y2 = "+str(y2)+"\n")
-                #print(self.threshold)
+                print("x1 = "+str(x1)+" y1 = "+str(y1))
+                print("x2 = "+str(x2)+" y2 = "+str(y2)+"\n")
+
                 print("minLineLenght = "+str(minLineLenght)+" maxLineGap = "+str(maxLineGap)+" threshold = "+str(thresholdOptional))
-        return coloredImage
+        return [coloredImage, x1]
