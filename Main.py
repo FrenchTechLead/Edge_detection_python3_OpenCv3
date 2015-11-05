@@ -4,6 +4,7 @@ import numpy as np
 from Edge.Sobel import *
 from Edge.Hough import *
 from Edge.ImageProp import *
+from Edge.LinesHandler import *
 
 def nothing(x):
     pass
@@ -46,8 +47,17 @@ while(1):
     lines = returnedArray[1]
 
     if k == ord('c'):
-        print("lines = ")
+        print("all points :")
         print(lines)
+        linesHandler = LinesHandler(lines, imgProp.width, imgProp.height)
+        linesHandler.split()
+        points = linesHandler.getPoints()
+        cv2.circle(inputImage,points[0], 10, (50,255,255), -1)
+        cv2.circle(inputImage,points[1], 10, (50,255,255), -1)
+        cv2.circle(inputImage,points[2], 10, (50,255,255), -1)
+        cv2.circle(inputImage,points[3], 10, (50,255,255), -1)
+        cv2.imshow('parametres', inputImage)
+        break
 
 
 
