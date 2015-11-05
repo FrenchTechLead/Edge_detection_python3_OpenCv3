@@ -110,7 +110,7 @@ class LinesHandler:
 
         print("part four list")
         print(self.partFourList)
-        for x4,y4 in self.partOneList:
+        for x4,y4 in self.partFourList:
             moX4 = moX4 +x4
             moY4 = moY4 +y4
         moX4 = math.floor(moX4/len(self.partFourList))
