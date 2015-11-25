@@ -38,6 +38,13 @@ cv2.circle(inputImage,points[3], 10, (50,255,255), -1)
 
 cv2.imshow('parametres', inputImage)
 
+pts1 = np.float32([points[0],points[1],points[2],points[3]])
+pts2 = np.float32([[0,0],[300,0],[0,300],[300,300]])
 
+M = cv2.getPerspectiveTransform(pts1,pts2)
+
+dst = cv2.warpPerspective(inputImage,M,(300,300))
+
+cv2.imshow('output', dst)
 
 cv2.waitKey(0)
