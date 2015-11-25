@@ -13,10 +13,10 @@ print("Welcome to Python WhiteBoard Recognition Program\n\n"
       "That's why you need to use the TrackBars to find the perfect parameteres for your inputImage \n\n"
       "press C when you perfectly detect edges")
 
-inputImage = cv2.imread('dunk.jpg')
+inputImage = cv2.imread('dunk2.jpg')
 imgProp = ImageProp(inputImage) # just getting image resolution and diagonal
 
-imgSobel = mySobel(inputImage, 1) # second parameter refers to ksize
+imgSobel = mySobel(inputImage, 3) # second parameter refers to ksize
 cv2.imshow('Sobel', imgSobel)
 
 a = imgProp.diagonal
@@ -24,7 +24,7 @@ a = imgProp.diagonal
 
 cv2.namedWindow('parametres')
 
-cv2.createTrackbar('Threshold', 'parametres', a, math.floor(a/2), nothing)
+cv2.createTrackbar('Threshold', 'parametres', 1, math.floor(a/2), nothing)
 cv2.createTrackbar('MinLineLenth', 'parametres', 0, math.floor(a/2), nothing)
 cv2.createTrackbar('MaxLineGape', 'parametres', 0, math.floor(a/2), nothing)
 
@@ -39,7 +39,7 @@ while(1):
     maxLineGape = cv2.getTrackbarPos('MaxLineGape','parametres')
 
 
-    inputImage = cv2.imread('dunk.jpg')
+    inputImage = cv2.imread('dunk2.jpg')
     linedImageObject = Hough(imgSobel,inputImage, 0.25)# third parameter refers to Threashold Coef
     returnedArray = linedImageObject.drawLinesP( minLineLenth, maxLineGape,inputImage,threshold)
     inputImage = returnedArray[0]
