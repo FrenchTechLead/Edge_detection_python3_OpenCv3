@@ -65,8 +65,8 @@ class LinesHandler:
         moY4= 0
         print()
         print("spliters")
-        print (math.floor(self.w/2))
-        print (math.floor(self.h/2))
+        print(math.floor(self.w/2))
+        print(math.floor(self.h/2))
         print()
 
 
@@ -120,3 +120,12 @@ class LinesHandler:
         print()
 
         return [(moX1, moY1), (moX2, moY2), (moX3, moY3), (moX4, moY4)]
+
+    def getLongestLine(self,):
+        length =0
+        for i in range(len(self.lines)):
+            for x1, y1, x2, y2 in self.lines[i-1] :
+
+                d = math.floor( math.sqrt( (x1-x2)**2 + (y1-y2)**2 ) )
+                if (d > length): length = d
+        return length

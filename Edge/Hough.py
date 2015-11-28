@@ -20,7 +20,6 @@ class Hough:
 
     def drawLinesP(self, minLineLenght, maxLineGap, coloredImage, threshold):
         lines = cv2.HoughLinesP(self.inputImageBW,1,np.pi/180,threshold,minLineLenght, maxLineGap)
-        print(lines)
         for i in range(len(lines)):
             for x1,y1,x2,y2 in lines[i-1]:
                 cv2.line(coloredImage, (x1, y1), (x2, y2),(0,255,0),1)

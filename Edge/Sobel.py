@@ -9,6 +9,7 @@ ddepth = cv2.CV_16S
 def mySobel( inputImage, ksize):
     img = cv2.GaussianBlur(inputImage, (3, 3), 0) #noise suppression
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # conversion to grayScale
+    img = cv2.equalizeHist(img) # egalisation de l histogramme pour mieux detecter les contours
     grad_x = cv2.Sobel(img, ddepth, 1, 0, ksize=ksize, borderType=cv2.BORDER_DEFAULT)# Gradient-X
     grad_y = cv2.Sobel(img, ddepth, 0, 1, ksize=ksize, borderType=cv2.BORDER_DEFAULT)# Gradient-Y
     sobxImage = cv2.convertScaleAbs(grad_x)# conversion to uint8
