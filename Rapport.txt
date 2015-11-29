@@ -1,40 +1,48 @@
 Whiteboard Scanning and Image Enhancement :
 
 
-Ce projet est un Python Package qui sert a traiter le probleme "Whiteboard Scanning and Image Enhancement ".
+Ce projet est un Python Package qui sert à traiter le problème du "Whiteboard Scanning and Image Enhancement".
 Le Package est composé de 5 Classes :
-
-1- imageProp
-2- Sobel
-3- Hough
-4- LinesHandler
-5- Perspective
+- imageProp
+- Sobel
+- Hough
+- LinesHandler
+- Perspective
 
 
 1- imageProp :
-    Cette classe sert a recuperer quelques propriétés de l'image d'entrée, tels que (la longueur, la largeur, la diagonale).
 
-2- Sobel:
-    Cette classe aplique le filtre Sobel:
-    Elle commence par suprimer le bruit de l'image.
-    Elle conrtit l'image en niveaux de gris.
-    *Elle aplique une egalisation de l'histogramme pour mieux faire apparaitre les contours.
-    Puis elle applique un filtre Sobel horizontal pour detecter les contours verticaux, et un filtre Vertical pour détecter les contours horizontaux.
-    Elle fusionne les deux images produites pour avoir tous les contours.
+Cette classe permet de récupérer quelques propriétés de l'image d'entrée, telles que la longueur, la largeur et la diagonale.
 
-3- Hough :
-    La classe Hough prend en entrée deux images la premiere en noir et blanc avec contours detectés et la deuxieme est l'image originale en couleurs.
-    la fonction drawLinesP() retourne des seguments de lignes et l'image originale avec les seguement dessinés dessus.
+
+2- Sobel :
+
+Cette classe applique le filtre Sobel:
+- Elle commence par supprimer le bruit de l'image.
+- Elle convertit l'image en niveaux de gris.
+- Elle applique une égalisation de l'histogramme pour mieux faire apparaitre les contours.
+- Puis elle applique un filtre Sobel horizontal pour détecter les contours verticaux, et un filtre Vertical pour détecter les contours horizontaux.
+- Elle fusionne les deux images produites pour avoir tous les contours.
+
+
+3- Hough :
+
+Elle prend en entrée deux images; la première correspond à l’image en noir et blanc avec les contours détectés et la deuxième correspond à l'image originale.
+La fonction drawLinesP retourne des segments de lignes et l'image originale avec les segments représentés dessus.
+
 
 4- LinesHandler :
-    Cette classe traite les seguements de lignes retournés par la fonction drawLinesP() de la classe Hough
-    Elle découpe l'image originale en 4 morceau égaux et tente de trouver un point qui correspond a un coin du tablau dans chaque morceau de l'image.
+
+Cette classe traite les segments de lignes retournés par la fonction drawLines de la classe Hough.
+Elle découpe l'image originale en 4 morceaux égaux et tente de trouver un point correspondant à un coin du tableau dans chacun de ces morceaux.
+
 
 5- Perspective :
-    Cette classe applique une transformation geometrique sur l'image en utilisant les quatres points retournés par linesHandler de facon a avoir une vu de face sur le tableau.
+
+Cette classe applique une transformation géométrique sur l'image en utilisant les quatre points retournés par LinesHandler de façon à avoir une vue de face sur le tableau.
 
 
 Conclusion :
 
-    Ce travail est le fruit de deux mois de réflexion sur le sujet, Nous avons pris beaucoup  de pistes avant d'arriver a ce résultat (qui n'est pas le plus optimal qui soit...).
-    Ce projet à rendu plus concrets les cours qu'on a eu en Python et en Traitement d'images sans lesquels ce projet n'aurait jamais vu jour.
+Ce travail est le fruit de deux mois de réflexion sur le sujet. Nous avons pris beaucoup de chemins avant d'arriver à ce résultat (qui n'est pas le plus optimal mais fonctionne en grande partie).
+Ce projet a rendu plus concrets les cours de Python et en Traitements d'images sans lesquels ce projet n'aurait jamais vu jour.
