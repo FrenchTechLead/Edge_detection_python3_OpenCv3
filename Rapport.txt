@@ -1,0 +1,40 @@
+Whiteboard Scanning and Image Enhancement :
+
+
+Ce projet est un Python Package qui sert a traiter le probleme "Whiteboard Scanning and Image Enhancement ".
+Le Package est composé de 5 Classes :
+
+1- imageProp
+2- Sobel
+3- Hough
+4- LinesHandler
+5- Perspective
+
+
+1- imageProp :
+    Cette classe sert a recuperer quelques propriétés de l'image d'entrée, tels que (la longueur, la largeur, la diagonale).
+
+2- Sobel:
+    Cette classe aplique le filtre Sobel:
+    Elle commence par suprimer le bruit de l'image.
+    Elle conrtit l'image en niveaux de gris.
+    *Elle aplique une egalisation de l'histogramme pour mieux faire apparaitre les contours.
+    Puis elle applique un filtre Sobel horizontal pour detecter les contours verticaux, et un filtre Vertical pour détecter les contours horizontaux.
+    Elle fusionne les deux images produites pour avoir tous les contours.
+
+3- Hough :
+    La classe Hough prend en entrée deux images la premiere en noir et blanc avec contours detectés et la deuxieme est l'image originale en couleurs.
+    la fonction drawLinesP() retourne des seguments de lignes et l'image originale avec les seguement dessinés dessus.
+
+4- LinesHandler :
+    Cette classe traite les seguements de lignes retournés par la fonction drawLinesP() de la classe Hough
+    Elle découpe l'image originale en 4 morceau égaux et tente de trouver un point qui correspond a un coin du tablau dans chaque morceau de l'image.
+
+5- Perspective :
+    Cette classe applique une transformation geometrique sur l'image en utilisant les quatres points retournés par linesHandler de facon a avoir une vu de face sur le tableau.
+
+
+Conclusion :
+
+    Ce travail est le fruit de deux mois de réflexion sur le sujet, Nous avons pris beaucoup  de pistes avant d'arriver a ce résultat (qui n'est pas le plus optimal qui soit...).
+    Ce projet à rendu plus concrets les cours qu'on a eu en Python et en Traitement d'images sans lesquels ce projet n'aurait jamais vu jour.

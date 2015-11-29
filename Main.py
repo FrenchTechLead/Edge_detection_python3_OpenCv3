@@ -1,18 +1,19 @@
 import math
-from distutils.command.install import install
-
+import sys
 import cv2
 import numpy as np
 from Edge.Sobel import *
 from Edge.Hough import *
 from Edge.ImageProp import *
 from Edge.LinesHandler import *
+from Edge.Perspective import *
 
 
 
 
-inputImage = cv2.imread('24.jpg')
-inputImage2 = cv2.imread('24.jpg')
+inputImage = cv2.imread(sys.argv[1])
+inputImage2 = cv2.imread(sys.argv[1])
+
 imgProp = ImageProp(inputImage) # just getting image resolution and diagonal
 a = imgProp.diagonal
 
@@ -51,15 +52,11 @@ cv2.circle(inputImage, points[3], 10, (50, 255, 255), -1)
 
 cv2.imshow('parametres', inputImage)
 
+
 length = linesHandler.getLongestLine()
-width = math.floor(0.75*length)
-pts1 = np.float32([points[0], points[1], points[2], points[3]])
-pts2 = np.float32([[0, 0], [length, 0], [0, width], [length, width]])
+perspective = Perspective(inputImage2,points, linesHandler.getLongestLine())
 
-M = cv2.getPerspectiveTransform(pts1, pts2)
-
-dst = cv2.warpPerspective(inputImage2, M, (length, width))
+dst = perspective.get()
 
 cv2.imshow('output', dst)
-print(linesHandler.getLongestLine())
 cv2.waitKey(0)
