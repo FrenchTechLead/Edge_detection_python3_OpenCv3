@@ -11,8 +11,8 @@ from Edge.LinesHandler import *
 
 
 
-inputImage = cv2.imread('20.jpg')
-inputImage2 = cv2.imread('20.jpg')
+inputImage = cv2.imread('24.jpg')
+inputImage2 = cv2.imread('24.jpg')
 imgProp = ImageProp(inputImage) # just getting image resolution and diagonal
 a = imgProp.diagonal
 
